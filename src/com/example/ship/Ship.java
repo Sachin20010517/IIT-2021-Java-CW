@@ -101,8 +101,28 @@ public class Ship {
         System.out.println("\nThere are 12 Cabins in this Cruise Ship. Gentleman please Reserve Your Cabin");
         System.out.print("\nPlease Enter the Cabin Number that You Want :");
 
-       
+        try {
+            int _cabinNumber = 0;
+            do {
+                _cabinNumber=input.nextInt();
+                if (!(_cabinNumber>0 && _cabinNumber<=12) ){
+                    System.out.println("This isn't an Valid Integer. Please Try Again");
+                    System.out.print("\nPlease Enter the Cabin Number that You Want :");
+                }
+                else {
+                    if(_arrayCabin[(_cabinNumber - 1)] == null){
+                        _arrayCabin[(_cabinNumber-1)]=name;
+                        System.out.print("   ** Thank You! "+name+", You booked Cabin No. " + _cabinNumber + "  successfully!! **\n\n");
+                    }else {
+                        System.out.println("    Sorry!!. This Cabin already booked.Please select another Cabin.\n");
+                    }
+                }
 
+            }while (!(_cabinNumber>0 && _cabinNumber<=12));
+        }catch (Exception e){
+            System.out.println("Please Enter Valid Integer ");
+        }
+/*
         int _cabinNumber=input.nextInt();
         if(_arrayCabin[(_cabinNumber - 1)] == null){
             _arrayCabin[(_cabinNumber-1)]=name;
@@ -110,7 +130,7 @@ public class Ship {
         }else {
             System.out.println("    Sorry!!. This Cabin already booked.Please select another Cabin.\n");
         }
-
+*/
 
     }
 
