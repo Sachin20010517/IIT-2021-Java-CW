@@ -1,6 +1,8 @@
 package com.example.ship;
 
+import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -63,6 +65,11 @@ public class Ship {
                         System.out.println("                             Store program data into file                             \n");
                         Save(array_cabin);
                         break;
+                    case "L":
+                        System.out.println("\n-----------------------------------------------------------------------------------");
+                        System.out.println("                              TO LOAD PREVIOUS PROGRAM                             \n");
+                        Lord();
+                        break;
                     case "Q":
                         System.out.println("\n                          You exited from the program.                              ");
                         System.out.println("                            Thank You!!                                        ");
@@ -82,7 +89,6 @@ public class Ship {
 
 
     }
-
 
 
     private static void addMethod(String[] _arrayCabin) {
@@ -120,7 +126,7 @@ public class Ship {
 
             }while (!(_cabinNumber>0 && _cabinNumber<=12));
         }catch (Exception e){
-            System.out.println("Please Enter Valid Integer ");
+            System.out.println("Please Enter Integer Number ");
         }
 /*
         int _cabinNumber=input.nextInt();
@@ -188,8 +194,23 @@ public class Ship {
         }
 
         System.out.println("\n    Successfully saved to the file");
+    }
 
+    private static void Lord() {
+        try {
+            File file =new File("Save.txt");
+            Scanner fileReader =new Scanner(file);
+            while (fileReader.hasNextLine()){
+                String text =fileReader.nextLine();
+                System.out.println(text);
+            }
+            fileReader.close();
 
+        }catch (IOException e){
+            System.out.println("Error while reading a file.");
+            e.printStackTrace();
+        }
+        System.out.println("\n    --**The Program Loaded Successfully--** ");
     }
 
     private static void findCabin(String[] arrayCabin) {
