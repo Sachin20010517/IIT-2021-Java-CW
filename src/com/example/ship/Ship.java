@@ -37,12 +37,12 @@ public class Ship {
                 switch (option){
                     case "A":
                         System.out.println("\n-----------------------------------------------------------------------------------");
-                        System.out.println("                             Adds customer to cabin                                \n");
+                        System.out.println("                             ADD CUSTOMER TO THE CABIN                                 \n");
                         addMethod(array_cabin);
                         break;
                     case "V":
                         System.out.println("\n-----------------------------------------------------------------------------------");
-                        System.out.println("                            Views All cabins                                 \n");
+                        System.out.println("                            VIEWS ALL CABINS                                      \n");
                         viewsAllCabins(array_cabin);
                         break;
                     case "E":
@@ -70,6 +70,11 @@ public class Ship {
                         System.out.println("                              TO LOAD PREVIOUS PROGRAM                             \n");
                         Lord();
                         break;
+                    case "O":
+                        System.out.println("\n-----------------------------------------------------------------------------------");
+                        System.out.println("                   View passengersOrdered alphabetically by name                   \n");
+                        SortMethod(array_cabin);
+                        break;
                     case "Q":
                         System.out.println("\n                          You exited from the program.                              ");
                         System.out.println("                            Thank You!!                                        ");
@@ -91,6 +96,8 @@ public class Ship {
     }
 
 
+
+
     private static void addMethod(String[] _arrayCabin) {
 
         Scanner input = new Scanner(System.in);
@@ -104,29 +111,39 @@ public class Ship {
             System.out.print("Please Again Input Your Correct Email :");
             email=input.nextLine();
         }*/
+
         System.out.println("\nThere are 12 Cabins in this Cruise Ship. Gentleman please Reserve Your Cabin");
-        System.out.print("\nPlease Enter the Cabin Number that You Want :");
 
-        try {
-            int _cabinNumber = 0;
+            int _cabinNumber=0;
             do {
-                _cabinNumber=input.nextInt();
-                if (!(_cabinNumber>0 && _cabinNumber<=12) ){
-                    System.out.println("This isn't an Valid Integer. Please Try Again");
-                    System.out.print("\nPlease Enter the Cabin Number that You Want :");
-                }
-                else {
-                    if(_arrayCabin[(_cabinNumber - 1)] == null){
-                        _arrayCabin[(_cabinNumber-1)]=name;
-                        System.out.print("   ** Thank You! "+name+", You booked Cabin No. " + _cabinNumber + "  successfully!! **\n\n");
-                    }else {
-                        System.out.println("    Sorry!!. This Cabin already booked.Please select another Cabin.\n");
+
+                System.out.print("\nPlease Enter the Cabin Number that You Want :");
+
+                try {
+
+                    _cabinNumber=input.nextInt();
+                    if (!(_cabinNumber>0 && _cabinNumber<=12) ){
+                        System.out.println("--Invalid Cabin number.There aren't such kind of Cabin number in the Ship.Please try again!!");
+
                     }
+                    else {
+                        if(_arrayCabin[(_cabinNumber - 1)] == null){
+                            _arrayCabin[(_cabinNumber-1)]=name;
+                            System.out.print("   ** Thank You! "+name+", You booked Cabin No. " + _cabinNumber + "  successfully!! **\n\n");
+                        }else {
+                            System.out.println("    Sorry!!. This Cabin already booked.Please select another Cabin.\n");
+                        }
+                    }
+
+
+
+                }catch (Exception e){
+                    System.out.println("              This isn't an Integer. Please Enter valid Integer number ");
+                    String junk_2 = input.next();          // junk_2 was set up to store invalid input.Otherwise,the expected result will not be given.If the program encounters
                 }
 
-            }while (!(_cabinNumber>0 && _cabinNumber<=12));
-        }catch (Exception e){
-            System.out.println("Please Enter Integer Number ");
+
+            }while (!(_cabinNumber>0 && _cabinNumber<=12) );
         }
 /*
         int _cabinNumber=input.nextInt();
@@ -138,7 +155,7 @@ public class Ship {
         }
 */
 
-    }
+
 
     private static void viewsAllCabins(String[] _arrayCabin) {
 
@@ -234,6 +251,29 @@ public class Ship {
         System.out.println("Hi");
     }
 
+
+    private static void SortMethod(String[] arrayCabin) {
+        int bottom =arrayCabin.length - 2;
+        String temp;
+        boolean exchanged = true;
+
+        while (exchanged){
+            exchanged=false;
+            for (int i=0;i<=bottom;i++){
+                if (arrayCabin[i].compareTo(arrayCabin[i+1])>0){
+                    temp=arrayCabin[i];
+                    arrayCabin[i]=arrayCabin[i+1];
+                    arrayCabin[i+1]=temp;
+                    exchanged=true;
+                }
+            }
+            bottom--;
+        }
+        for (String i:arrayCabin){
+            System.out.println(i);
+        }
+
+    }
 
 
 
