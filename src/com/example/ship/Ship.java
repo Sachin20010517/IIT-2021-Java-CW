@@ -7,6 +7,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Ship {
+
     public static void main(String[] args) {
         String[] array_cabin = new String[12];
 
@@ -75,6 +76,11 @@ public class Ship {
                         System.out.println("                   View passengersOrdered alphabetically by name                   \n");
                         SortMethod(array_cabin);
                         break;
+                    case "T":
+                        System.out.println("\n-----------------------------------------------------------------------------------");
+                        System.out.println("\n             Expenses per passenger & Total Expenses of all passengers           \n");
+
+                        break;
                     case "Q":
                         System.out.println("\n                          You exited from the program.                              ");
                         System.out.println("                            Thank You!!                                        ");
@@ -101,8 +107,20 @@ public class Ship {
     private static void addMethod(String[] _arrayCabin) {
 
         Scanner input = new Scanner(System.in);
-        System.out.print("Please Enter Your Name :");
-        String name=input.nextLine();
+        System.out.print("Please Enter Your First Name :");
+        String firstname=input.nextLine();
+        System.out.print("Please Enter Your Surname :");
+        String surname = input.nextLine();
+
+
+        Passenger passengerInfo = new Passenger(firstname,surname,"$100");
+
+        //cabinArraylist.add(firstname);
+        //cabinArraylist.add(surname);
+        //cabinArraylist.add(passengerInfo.getExpenses());
+
+
+
         /*
         System.out.print("Please Enter Valid Email :");
         String email=input.nextLine();
@@ -128,8 +146,12 @@ public class Ship {
                     }
                     else {
                         if(_arrayCabin[(_cabinNumber - 1)] == null){
-                            _arrayCabin[(_cabinNumber-1)]=name;
-                            System.out.print("   ** Thank You! "+name+", You booked Cabin No. " + _cabinNumber + "  successfully!! **\n\n");
+                            _arrayCabin[(_cabinNumber-1)]=firstname;
+                            System.out.print("   ** Thank You! "+firstname+", You booked Cabin No. " + _cabinNumber + "  successfully!! **\n\n");
+
+                            Cabin cabinInfo = new Cabin(passengerInfo);
+                            cabinInfo.Print();
+
                         }else {
                             System.out.println("    Sorry!!. This Cabin already booked.Please select another Cabin.\n");
                         }
